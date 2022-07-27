@@ -1,5 +1,3 @@
-# Basic Imports
-from selenium.webdriver.common.by import By
 # Pages Imports
 from pages.BasePage import BasePage as BP
 from locators.MainPageLocators import MainPageLocators
