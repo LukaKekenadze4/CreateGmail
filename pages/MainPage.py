@@ -3,11 +3,10 @@ from selenium.webdriver.common.by import By
 # Pages Imports
 from pages.BasePage import BasePage as BP
 from locators.MainPageLocators import MainPageLocators
-from locators.RegistrationFormLocators import RegistrationPageLocators
 
 # call page
 MPL = MainPageLocators()
-RPL = RegistrationPageLocators()
+
 
 class MainPage(BP):
     def __init__(self):

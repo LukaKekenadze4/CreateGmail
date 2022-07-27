@@ -4,10 +4,12 @@ from pytest import assume
 from driver import Driver
 import time
 import os
+from selenium.webdriver.support.select import Select
 
 # pages Imports
 from pages.MainPage import MainPage
 from pages.RegistrationPage import RegistrationPage
+from pages.VerifyPage import VerifyPage
 
 # clear reports files(images/allure)
 mypath = "reports/images"
@@ -22,6 +24,7 @@ for root, dirs, files in os.walk(mypath1):
 # Call Page
 MP = MainPage()
 RP = RegistrationPage()
+VP = VerifyPage()
 
 
 # tests
@@ -83,8 +86,50 @@ class Test_regisration:
         input_passwd = str(input('enter your passwd: '))
         passwd_conf.send_keys(input_passwd)
 
-    def test_click_checkbox(self):
-        check = RP.click_checkbox()
-        check.click()
+    def test_click_next_button(self):
+        choose_username_version = str(input('Would you like your choice//type "yes" or "no": '))
+        if choose_username_version.upper() == 'NO':
+            choose_suggestion = int(input('choose one of them "1" or "2" or "3": '))
+            if int(choose_suggestion) == 1:
+                sug1 = RP.get_suggestions()[0]
+                sug1.click()
+                NextButton = RP.click_next_button()
+                with assume:
+                    assert NextButton.text == 'Next'
+                NextButton.click()
+            elif int(choose_suggestion) == 2:
+                sug2 = RP.get_suggestions()[1]
+                sug2.click()
+                NextButton = RP.click_next_button()
+                with assume:
+                    assert NextButton.text == 'Next'
+                NextButton.click()
+            elif int(choose_suggestion) == 3:
+                sug3 = RP.get_suggestions()[2]
+                sug3.click()
+                NextButton = RP.click_next_button()
+                with assume:
+                    assert NextButton.text == 'Next'
+                NextButton.click()
+                NextButton[0].click()
+        elif choose_username_version.upper() == 'YES':
+            NextButton = RP.click_next_button()
+            with assume:
+                assert NextButton.text == 'Next'
+            NextButton.click()
 
+    def test_input_mobile_number(self):
+        mobile_field = VP.input_mobile_number()
+        mobile_number = int(input('choose your mobile number: '))
+        mobile_field.send_keys(mobile_number)
+        NextButton = VP.click_next_button()
+        with assume:
+            assert NextButton.text == 'Next'
+        NextButton.click()
 
+    def test_input_verify_code(self):
+        verification_code_field = VP.input_verify_code()
+        verification_code = int(input('enter verification code: '))
+        verification_code_field.send_keys(verification_code)
+        verify_button = VP.click_verify_button()
+        verify_button.click()

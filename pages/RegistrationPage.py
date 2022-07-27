@@ -38,8 +38,15 @@ class RegistrationPage(BP):
         return CheckBox
 
     def get_suggestions(self):
-        suggestions = BP.find_element(self, RPL.suggestions_xpath)
-        return suggestions
+        suggestions1 = BP.find_element(self, RPL.suggestion1_xpath)
+        suggestions2 = BP.find_element(self, RPL.suggestion2_xpath)
+        suggestions3 = BP.find_element(self, RPL.suggestion3_xpath)
+        return suggestions1, suggestions2, suggestions3
+
+    def click_next_button(self):
+        button_text = BP.find_element(self, RPL.next_button_text_xpath)
+        return button_text
+
 
 
 

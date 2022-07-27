@@ -16,7 +16,7 @@ def gen_image_name():
 
 def pytest_sessionfinish():
     print('\n Tests successfully executed')
-    Driver.driver.quit()
+    # Driver.driver.quit()
     if "--collect-only" not in sys.argv:
         os.popen("allure serve reports/allure")
         if os.path.exists("reports/images"):
