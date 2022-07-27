@@ -39,12 +39,16 @@ class Test_regisration:
             assert create_button.text == 'Create account'
         create_button.click()
 
+    @allure.title("click myself button")
+    @allure.description("When we click create account button, We should choose account for Myself type")
     def test_click_for_myself_button(self):
         for_myself_button = MP.click_for_myself_button()
         with assume:
             assert for_myself_button.text == 'For myself'
         for_myself_button.click()
 
+    @allure.title("enter our first name")
+    @allure.description("We should enter our first name in the registration form")
     def test_input_first_name(self):
         first_name = RP.input_first_name()
         first_name_text = first_name.get_attribute('aria-label')
@@ -53,6 +57,8 @@ class Test_regisration:
         first_name_input = str(input('enter your name: '))
         first_name.send_keys(first_name_input)
 
+    @allure.title("enter our last name")
+    @allure.description("We should enter our last name in the registration form")
     def test_input_last_name(self):
         last_name = RP.input_last_name()
         first_name_text = last_name.get_attribute('aria-label')
@@ -69,7 +75,8 @@ class Test_regisration:
     #     input_user = str(input('enter your username: '))
     #     username.send_keys(input_user)
     #     time.sleep(2)
-
+    @allure.title("enter password")
+    @allure.description("We should enter password in the registration form")
     def test_input_password(self):
         passwd = RP.input_password()
         passwd_text = passwd.get_attribute('aria-label')
@@ -78,6 +85,8 @@ class Test_regisration:
         input_passwd = str(input('enter your passwd: '))
         passwd.send_keys(input_passwd)
 
+    @allure.title("enter confirm password")
+    @allure.description("We should re-enter password in the registration form")
     def test_confirm_input_password(self):
         passwd_conf = RP.input_confirm_password()
         passwd_text = passwd_conf.get_attribute('aria-label')
@@ -86,6 +95,8 @@ class Test_regisration:
         input_passwd = str(input('enter your passwd: '))
         passwd_conf.send_keys(input_passwd)
 
+    @allure.title("click next button")
+    @allure.description("When we enter our first and last names, the system should suggests our surname based on our first and last names, We should choose another one or let's leave it the same")
     def test_click_next_button(self):
         choose_username_version = str(input('Would you like your choice//type "yes" or "no": '))
         if choose_username_version.upper() == 'NO':
@@ -118,6 +129,8 @@ class Test_regisration:
                 assert NextButton.text == 'Next'
             NextButton.click()
 
+    @allure.title("enter our mobile number")
+    @allure.description("We should enter our mobile number,where system sends OTP code")
     def test_input_mobile_number(self):
         mobile_field = VP.input_mobile_number()
         mobile_number = int(input('choose your mobile number: '))
@@ -127,6 +140,8 @@ class Test_regisration:
             assert NextButton.text == 'Next'
         NextButton.click()
 
+    @allure.title("We should enter verify code")
+    @allure.description("when we enter our mobile number, we should enter OTP code")
     def test_input_verify_code(self):
         verification_code_field = VP.input_verify_code()
         verification_code = int(input('enter verification code: '))
